@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>网页换肤</title>
+    <style>
+        legend {
+            color: red;
+            font-weight: 700;
+            font-size: xx-large;
+        }
+        
+        fieldset {
+            width: 800px;
+            height: 300px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        
+        .div1 {
+            border: 1px solid gray;
+            margin-top: 50px;
+            height: 80px;
+        }
+        
+        .div2 {
+            border: 1px solid gray;
+            font-size: 25px;
+            margin-top: 30px;
+        }
+        
+        li {
+            margin: 0 auto;
+            width: 40px;
+            height: 40px;
+            float: left;
+            margin-left: 20px;
+            border: 1px solid gray;
+            list-style: none;
+        }
+        
+        .brown {
+            background-color: brown;
+        }
+        
+        .blueviolet {
+            background-color: blueviolet;
+        }
+        
+        .red {
+            background-color: red;
+        }
+        
+        .blue {
+            background-color: blue;
+        }
+        
+        .green {
+            background-color: green;
+        }
+        
+        .pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>网页换肤</legend>
+        <div class="div1">
+            <ul>
+                <li class="brown" id="brown" title="棕色"></li>
+                <li class="blueviolet" id="blueviolet" title="紫色"></li>
+                <li class="red" id="red" title="红色"></li>
+                <li class="blue" id="blue" title="蓝色"></li>
+                <li class="green" id="green" title="绿色"></li>
+                <li class="pink" id="pink" title="粉红色"></li>
+            </ul>
+        </div>
+        <div class="div2" id="div2">LocalStorage将数据保存在客户端本地的硬件设备中，及时浏览器关闭了，该数据仍然存在，下次打开浏览 器访问网站是仍然可以继续使用。</div>
+    </fieldset>
+</body>
+<script>
+    var colorvalue = window.localStorage.localColor;
+    var div2 = document.getElementById("div2");
+    var brown = document.getElementById("brown");
+    var blueviolet = document.getElementById("blueviolet");
+    var red = document.getElementById("red");
+    var blue = document.getElementById("blue");
+    var green = document.getElementById("green");
+    var pink = document.getElementById("pink");
+    if (colorvalue) {
+        div2.style.backgroundColor = colorvalue;
+    }
+    if (localStorage.pagecount) {
+        localStorage.pagecount = Number(localStorage.pagecount) + 1;
+    } else {
+        localStorage.pagecount = 1;
+        div2.style.backgroundcolor = "brown";
+        localStorage.setItem('localColor', 'brown');
+    }
+    var li = document.getElementsByTagName("li");
+    for (var i = 0; i < li.length; i++) {
+        if (li[i].id == localStorage.getItem.localColor) {
+            li[i].style.marginTop = "-20px";
+        }
+    }
+    for (var i = 0; i < li.length; i++) {
+        li[i].onclick = function() {
+            var color = this.id;
+            window.localStorage.setItem('localColor', color);
+            var color0 = window.localStorage.getItem("localColor");
+            div2.style.backgroundColor = color0;
+            for (j = 0; j < li.length; j++) {
+                li[j].style.marginTop = "0px";
+            }
+            this.style.marginTop = "-20px";
+        }
+    }
+</script>
+
+</html>
